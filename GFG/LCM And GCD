@@ -1,0 +1,32 @@
+//LCM And GCD GFG -: https://www.geeksforgeeks.org/problems/lcm-and-gcd4516/1
+
+class Solution {
+  public:
+    vector<int> lcmAndGcd(int a, int b) {
+        // code here
+        int originalA = a;
+        int originalB = b;
+        
+        while(a > 0 && b > 0){
+            if(a > b){
+                a = a % b;
+            }else{
+                b = b % a;
+            }
+        }
+        
+        // int gcd;
+        // if(a == 0) {
+        //     gcd = b;
+        // }else{
+        //     gcd = a;
+        // }
+        //OR
+
+        int gcd = (a == 0) ? b : a;
+        
+        int lcm = (originalA * originalB) / gcd;      //formula of lcm = (a * b) / gcd 
+        
+        return { lcm , gcd };
+    }
+};
