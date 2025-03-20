@@ -1,0 +1,13 @@
+// Sum of first n terms -: https://www.geeksforgeeks.org/problems/sum-of-first-n-terms5843/1
+
+class Solution {
+  public:
+    int sumOfSeries(int n) {
+        // code here
+        if(n == 0){
+            return 0;
+        }
+        
+        return pow(n,3) + sumOfSeries(n-1);
+    }
+};
