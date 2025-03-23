@@ -1,0 +1,14 @@
+// 3492. Maximum Containers on a Ship -: https://leetcode.com/problems/maximum-containers-on-a-ship/description/
+
+class Solution {
+public:
+    int maxContainers(int n, int w, int maxWeight) {
+        return min(n*n , maxWeight/w);   
+
+        /*
+        ex n=2, n*n = 4 deck avilable
+                maxWe / w = 15/3 = 5 contaoners 
+                min(4,5) = 4
+        */
+    }
+};
