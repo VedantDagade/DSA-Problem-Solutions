@@ -1,0 +1,32 @@
+// 0205. Isomorphic Strings -: https://leetcode.com/problems/isomorphic-strings/description/
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+
+        //if two string size not similar then it return false
+        if(s.size() != t.size()) return false;
+
+        //create hash of 256 due to 256 ascii char
+        int m1[256] = {0} , m2[256] = {0};
+
+        for(int i = 0; i < s.size(); i++){
+            
+            //it actually start comparing after i = 1 due to might be alphabet ascii value 0.
+            if(m1[s[i]] != m2[t[i]]) return false;
+            
+            m1[s[i]] = i+1;   
+            m2[t[i]] = i+1;
+        } 
+
+        return true;
+    }
+};
+
+
+/*
+
+✔ "egg" and "add" → Isomorphic (e → a, g → d)
+✖ "foo" and "bar" → Not Isomorphic (o maps to two different letters)
+
+*/
