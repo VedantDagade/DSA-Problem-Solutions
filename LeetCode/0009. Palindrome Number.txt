@@ -1,0 +1,24 @@
+0009. Palindrome Number -: https://leetcode.com/problems/palindrome-number/
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        int copy = x;
+        long long reverse_no = 0;
+
+        while( x > 0){
+            int lastDigit = x % 10;
+
+            //if overflow or underflow then return 
+            if(lastDigit > INT_MAX / 10 || lastDigit < INT_MIN / 10){
+                return 0;
+            }
+
+            reverse_no = (reverse_no * 10)+ lastDigit;
+            x /= 10;
+        }
+
+        if(reverse_no == copy) return true;
+        return false;    
+    }
+};
