@@ -1,0 +1,32 @@
+// 283. Move Zeroes -: https://leetcode.com/problems/move-zeroes/description/
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+       int n = nums.size();
+
+       if(n == 1 && nums[0] == 0){
+        return;
+       }
+
+       int j = -1;
+
+       //to get zero element index if get then assign to j;
+       for(int i = 0; i < n; i++){
+        if(nums[i] == 0){
+            j = i;
+            break;
+        }
+       }
+
+       if(j == -1)return;   //if not any zero element found in array then it return the -1.
+       
+       //to check non zero element index and then swap with j. point j always to zero element.
+       for(int i=j+1; i < n; i++){
+        if(nums[i] != 0){
+            swap(nums[i] , nums[j]);
+            j++;     //if swapping completed then increse j index.
+        }
+       }
+    }
+};
