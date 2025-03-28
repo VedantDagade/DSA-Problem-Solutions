@@ -1,0 +1,27 @@
+//242. Valid Anagram -: https://leetcode.com/problems/valid-anagram/description/
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+
+        //if both string size is not same then direct return false
+        if(s.size() != t.size()) return false;    
+
+        int n = s.size();
+        vector<int> count(26,0);
+
+        // Count occurence of each character in first string 
+        for(char c : s) count[c - 'a']++;
+        
+        // Decrement the count for each character in the second string
+        for(char c : t) count[c - 'a']--;
+
+        for(int i : count){
+            if(i != 0){
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
