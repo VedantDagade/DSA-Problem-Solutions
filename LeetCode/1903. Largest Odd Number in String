@@ -1,0 +1,39 @@
+// 1903. Largest Odd Number in String -: https://leetcode.com/problems/largest-odd-number-in-string/description/
+
+class Solution {
+public:
+    string largestOddNumber(string num) {
+        
+        if(num.empty())return"";   //if string is empty is directly return "".
+        int n = num.size();     
+        
+        // for(int i = n-1; i >= 0; i--){
+        //    //(num[i] - '0') this convert string no into the integer number  "2" -> 2.
+        //    if((num[i] - '0') % 2 != 0){     
+        //     return num.substr(0 , i + 1);       
+        //    }
+        // }
+
+        // //if the all no is even then return also "".
+        // return "";
+
+
+        //optimal -: also remove the trailing zeros in the number 000056870  -> 5687
+        int j = -1;
+        for(int i = n-1; i >= 0; i--){
+            if((num[i] - '0') % 2 == 1){
+                j = i;          //mark the odd no index from backside and then break -> 7.
+                break;
+            }
+        }
+
+        if(j == -1) return "";  // if not any odd no present in string means str is even "".
+         
+        //for remove trailing zeros
+        int i = 0;
+        while(i <= j && num[i] == '0'){    
+            i++;
+        }
+        return num.substr(i , j-i+1);   //(4 , 7-4+1) ->(4,4) from 4 index to 4 numbers 5687. 
+    }
+};
