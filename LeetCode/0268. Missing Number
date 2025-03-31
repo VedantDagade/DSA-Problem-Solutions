@@ -1,0 +1,42 @@
+// 268. Missing Number -: https://leetcode.com/problems/missing-number/description/
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+       int n = nums.size();
+
+    /* My Own Way-:
+        sort(nums.begin(),nums.end());       //sort the numbers by increasing order
+        if(nums[0] != 0) return 0;      //if array is not start with 0 then return zero
+      
+        for(int i = 0; i < n-1; i++){
+            if((nums[i+1] - nums[i]) != 1){    
+                return nums[i+1] - 1;
+            }
+        }
+        return nums[n-1] + 1;    //if not any missing no found in array then return last + 1. 
+    */ 
+
+    /*optimal 1-: using sum formula
+       int sum = 0;
+       for(int i=0; i<n; i++){
+        sum = sum + nums[i];
+       }
+
+       return (n*(n+1))/2 - sum;
+    */
+
+   //best way-:
+   //Optimal 2-: using XOR Property
+      int xor1 = 0;
+      int xor2 = 0;
+
+      for(int i = 0; i < n; i++){
+        xor2 ^= nums[i];
+        xor1 ^= i+1;
+      }
+
+      return xor1 ^ xor2;    
+    }
+};
+
