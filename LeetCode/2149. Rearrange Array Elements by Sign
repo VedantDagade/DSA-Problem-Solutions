@@ -1,0 +1,29 @@
+// 2149. Rearrange Array Elements by Sign -: https://leetcode.com/problems/rearrange-array-elements-by-sign/description/
+
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        
+        int n = nums.size();    //get size of nums
+        int posIndex = 0 , negIndex = 1;
+
+        vector<int> ans(n,0);        // Initialize a result vector of size n
+       
+        for(int i = 0; i < n; i++){
+
+            if(nums[i] < 0){
+              
+              ans[negIndex] = nums[i];  //if curr ele is -ve place at odd index
+              negIndex += 2;            // Move to the next odd index
+
+            }else{
+
+              ans[posIndex] = nums[i];
+              posIndex += 2;       // Move to the next even index
+
+            }
+        }
+        
+        return ans;      //return rearranged array
+    }
+};
