@@ -1,0 +1,29 @@
+// 27. Remove Element -: https://leetcode.com/problems/remove-element/description/
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int n = nums.size();
+        int index = 0;        //index is used to track the position where the next non-val element should be placed.
+
+        for(int i = 0; i < n; i++){
+            if(nums[i] != val){
+                nums[index] = nums[i];
+                index++;
+            }
+        }
+        return index;
+
+
+
+
+/* 🔁 Step-by-Step Visualization:
+  Step	i	nums[i]	         Action	             index	     nums(after step)
+  1	    0	  3	          Equal to val →skip	   0	     [3, 2, 2, 3]
+  2	    1	  2	          Not val → nums[0] = 2	   1	     [2, 2, 2, 3]
+  3	    2	  2	          Not val → nums[1] = 2	   2	     [2, 2, 2, 3]
+  4	    3	  3	          Equal to val → skip	   2	     [2, 2, 2, 3]
+*/
+
+    }
+};
