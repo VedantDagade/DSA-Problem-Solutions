@@ -1,0 +1,36 @@
+//https://leetcode.com/problems/intersection-of-two-arrays/description/
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+       
+        int n = nums1.size();
+        int m = nums2.size();
+        int i = 0 , j = 0;
+        
+        //Sort both arrays to use two-pointer technique.
+        sort(nums1.begin() , nums1.end());
+        sort(nums2.begin() , nums2.end());
+
+        vector<int> interSect;
+        
+        while(i < n && j < m){
+          if(nums1[i] < nums2[j]){        //Move pointer `i` forward if nums1[i] is smaller
+            i++;
+          }
+          else if(nums1[i] > nums2[j]){
+            j++;                         //Move pointer `j` forward if nums2[j] is smaller
+          }
+          else if(nums1[i] == nums2[j]){     //so we found a common element
+           // Add to result only if it's not a duplicate
+           if(interSect.empty() || interSect.back() != nums1[i]){   
+            interSect.push_back(nums1[i]);
+           }
+            i++;
+            j++;
+          }
+        }   
+        
+        return interSect;
+    }
+};
