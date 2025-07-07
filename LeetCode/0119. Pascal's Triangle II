@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        
+        vector<int> ans(rowIndex+1);    //due to zero base index make +1 size.
+        ans[0] = 1;                     //initial position is fixed 1.
+        long long val = 1;
+
+        for(int i=1; i<=rowIndex; i++){ 
+            val = val * (rowIndex - i + 1);
+            val = val / i;
+            ans[i] = val;
+        }
+
+        return ans;
+    }
+};
