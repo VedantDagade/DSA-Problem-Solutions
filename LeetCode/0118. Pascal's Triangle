@@ -1,0 +1,55 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        
+        vector<vector<int>> ans;         //make 2D Dynamic Size array.
+      
+        for(int row=1; row<=numRows; row++){          //for rows 
+
+            vector<int> v;
+            long long val = 1;     //avoid overflows
+            v.push_back(1);        //first place is always 1.
+
+            for(int col=1; col<row; col++){   //for colums 
+                val = val * (row - col);  
+                val = val / col;            
+                v.push_back(val);              //prev_ans * [row-column] /column.
+            }
+
+            ans.push_back(v);      //push the rows inside ans.
+        }
+
+        return ans;
+    }
+};
+
+
+
+/* Also Good Practice.
+ private:
+    vector<int> pascalTriangle(int rows){
+       
+       long long ans = 1;
+       vector<int> ansRow;
+       ansRow.push_back(1);    //put the first row position to fixed 1.
+
+       for(int col=1; col<rows; col++){     // ans * [(row - col) / col]
+         ans = ans * (rows - col);
+         ans = ans / col;
+         ansRow.push_back(ans);
+       }
+
+       return ansRow;  //send first row-1 then row-2 then row 2...
+    }
+ public:
+    vector<vector<int>> generate(int numRows) {
+
+        vector<vector<int>> ans;     //A 2D array (dynamic size). vector inside vector.
+
+        for(int row = 1; row <= numRows; row++){     //1 2 3 4 5
+           ans.push_back(pascalTriangle(row));
+        }
+
+        return ans;
+    }
+*/
