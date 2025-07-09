@@ -1,0 +1,62 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+
+        int n = nums.size();
+        vector<int> ans;
+        vector<vector<int>> eleIndex;      //2D Array store the original element and index at eleIndex
+
+        for(int i = 0; i < n; i++){
+            eleIndex.push_back({nums[i] , i});           //store the element and its original index
+        }
+
+        //sort the only elements not original index. a and b is row of eleIndx
+        sort(eleIndex.begin() , eleIndex.end(), [](const vector<int>& a , const vector<int>& b ){
+            return a[0] < b[0];            //this is Lambda function getting eleIndex[i] and eleIndex[j] compare
+        });
+
+        int left = 0 , right = n-1;
+
+        while(left < right){
+            int sum = eleIndex[left][0] + eleIndex[right][0];    //get the sum of left and right element sum
+
+            if(sum == target){
+                ans.push_back(eleIndex[left][1]);              //store the index left element
+                ans.push_back(eleIndex[right][1]);             //store the index right element
+                return ans;
+
+            }else if(sum < target){
+                left++;
+            }else{
+                right--;
+            }
+        }
+
+        return {-1 , -1};      
+    }
+
+};
+
+
+//By Mapping
+//also good method -:
+/*
+  int n = nums.size();
+  map<int,int>mpp;              //create map for store number and index.
+       
+  for(int i=0; i<n; i++){      
+    int num = nums[i];                         //store the current num.
+    int moreNeeded = target - num;            //store requ num to reach target.
+        
+    //If(found ≠ not found) → [Yes], we found the number needed!.
+
+    if(mpp.find(moreNeeded) != mpp.end()){   
+        return {mpp[moreNeeded] , i};   //return moreNe num_index & current num index.    
+    }
+
+
+    mpp[num] = i;                    //store the curren num and its index.got future use.
+
+  }
+    return {-1 , 1};                 //if not found then return this
+*/
