@@ -1,0 +1,54 @@
+//75. Sort Colors -: https://leetcode.com/problems/sort-colors/description/
+
+// in this we use the insertion sort concept (in place algorithm)
+//Dutch National Flag Proble
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        //Dutch National Flag Problem.
+        const int n = nums.size();
+        int low = 0 , mid = 0 , high = n-1;
+
+        while(mid <= high){                     //Process elements until mid crosses high
+            
+            if(nums[mid] == 0){                   
+                swap(nums[low] , nums[mid]);     //Move 0 to front
+                low++;
+                mid++;
+
+            }else if(nums[mid] == 1){           // 1 is in correct place
+                mid++;                          //due to 1 place in correct position mid++.
+
+            }else{
+               swap(nums[mid] , nums[high]);     // Move 2 to end
+               high--;
+            }
+
+        } 
+        
+    }
+};
+
+
+//sort using insertion sort
+/*
+  // in this we use the insertion sort concept (in place algorithm)
+        int n = nums.size();
+
+        int minIndex;
+
+        for(int i = 0; i < n; i++){
+            minIndex = i;
+            for(int j = i; j < n; j++){
+                if(nums[j] < nums[minIndex]){
+                    minIndex = j;
+                }
+            }
+
+            if(minIndex != i){
+                swap(nums[i] , nums[minIndex]);
+            }
+        }
+
+*/
