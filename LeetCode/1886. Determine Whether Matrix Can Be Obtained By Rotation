@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) { 
+        int n = mat.size();    
+
+        // Use of Lambda function-: & => Capture Clause.
+        auto rotate90 = [&](vector<vector<int>>& mat){
+
+           // Transpose of matrix
+            for(int i = 0; i < n; i++){
+                for(int j = 0; j < i; j++){
+                  swap(mat[i][j], mat[j][i]);
+                }
+            }
+
+            // Reverse a row of mat
+            for(int i = 0; i < n; i++){
+                reverse(mat[i].begin() , mat[i].end());
+            }
+        }; 
+
+        // Check for 0 , 90, 180 , 270 degree of Rotation
+        for(int r = 0; r < 4; r++){
+            if(mat == target) return true;
+            rotate90(mat);
+        }
+
+        return false;
+    }
+};
+
+// auto -> lets compiler decide lambda's type
+// [&]  -> capture outside variables by reference (use 'n' inside lambda)
